@@ -20,9 +20,9 @@ export class AppComponent {
   public albums: Album[];
   constructor(){
     this.albums = [
-      new Album("Transatlanticism", "Death Cab for Cutie", 19.99, "indie"),
-      new Album("Kidz Bop", "children", 4.99, "pop"),
-      new Album("Me and My Dogs", "Chad", 9.99, "country")
+      new Album("Come with Me", "Martin van Buren", 19.99, "hip hop"),
+      new Album("Get Crazy", "Franklin Pierce", 4.99, "pop"),
+      new Album("Me and My Dogs", "Millard Fillmore", 9.99, "country")
     ];
   }
   albumWasSelected(clickedAlbum: Album): void{

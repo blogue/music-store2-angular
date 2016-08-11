@@ -5,7 +5,7 @@ import { Album } from './album.model';
   name: 'cart',
   pure: false
 })
-export class FilterPipe implements PipeTransform {
+export class CartPipe implements PipeTransform {
   transform(input: Album[], args) {
     var inCart = args[0];
     var albums = [];

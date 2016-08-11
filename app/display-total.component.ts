@@ -1,11 +1,14 @@
 import { Component } from 'angular2/core';
 import { Album } from './album.model';
 import { AlbumListComponent } from './album-list.component';
+import { CartPipe } from './cart.pipe';
 
 @Component({
-  selector: 'display-cart-total',
+  selector: 'display-cart',
   inputs: ['albumList'],
+  pipes: [CartPipe],
   template:`
+    <h4 *ngFor="#album of albumList | cart">{{album.title}} | {{album.artist}} | {{album.price}} | {{album.genre}}</h4>
     <h1>Total: {{getInCartTotal()}}</h1>
   `
 })
