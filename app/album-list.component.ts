@@ -5,25 +5,33 @@ import { NewAlbumComponent } from './new-album.component';
 import { DisplayInCartTotal } from './display-total.component';
 import { CartPipe } from './cart.pipe';
 import { FilterPipe } from './filter.pipe';
+import { SortPipe } from './sort.pipe';
 
 @Component({
   selector: 'album-list',
   inputs: ['albumList'],
   outputs: ['onAlbumSelect'],
-  pipes: [CartPipe, FilterPipe],
+  pipes: [CartPipe, FilterPipe, SortPipe],
   directives:[AlbumComponent, NewAlbumComponent, DisplayInCartTotal],
   template: `
   <div class="container">
+    <label>Filter by Genre: </label>
     <select id="selectGenre" (change)="onChangeGenre($event.target.value)" class="filter">
       <option value="allGenres" selected="selected">Show All</option>
       <option *ngFor="#album of albumList" value="{{album.genre}}">{{album.genre}}</option>
     </select>
+    <label>Filter by Artist: </label>
     <select id="selectArtist" (change)="onChangeArtist($event.target.value)" class="filter">
       <option value="allArtists" selected="selected">Show All</option>
       <option *ngFor="#album of albumList" value="{{album.artist}}">{{album.artist}}</option>
     </select>
+    <label>Sort: </label>
+    <select (change)="onChangeSort($event.target.value)" class="filter">
+      <option value="price" selected="selected">Price</option>
+      <option value="artist">Artist</option>
+    </select>
     <div class="row">
-    <album-display *ngFor="#currentAlbum of albumList | filter:filterGenre:filterArtist"
+    <album-display *ngFor="#currentAlbum of albumList | filter:filterGenre:filterArtist | sort:sortByProperty"
     (click)="albumClicked(currentAlbum)"
     [class.selected]="currentAlbum === selectedAlbum"
     [album]="currentAlbum">
@@ -43,6 +51,7 @@ export class AlbumListComponent {
   public selectedAlbum: Album;
   public filterGenre: string = "allGenres";
   public filterArtist: string = "allArtists";
+  public sortByProperty: string = "price";
   constructor(){
     this.onAlbumSelect = new EventEmitter();
   }
@@ -60,5 +69,8 @@ export class AlbumListComponent {
   }
   onChangeArtist(filterOption) {
     this.filterArtist = filterOption;
+  }
+  onChangeSort(filterOption) {
+    this.sortByProperty = filterOption;
   }
 }

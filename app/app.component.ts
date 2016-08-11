@@ -22,7 +22,8 @@ export class AppComponent {
     this.albums = [
       new Album("Come with Me", "Martin van Buren", 19.99, "hip hop"),
       new Album("Get Crazy", "Franklin Pierce", 4.99, "pop"),
-      new Album("Me and My Dogs", "Millard Fillmore", 9.99, "country")
+      new Album("Me and My Dogs", "Millard Fillmore", 9.99, "country"),
+      new Album("Where my Hoes At?", "Thomas Jefferson", 5.99, "hip hop")
     ];
   }
   albumWasSelected(clickedAlbum: Album): void{
